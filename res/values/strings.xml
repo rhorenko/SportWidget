@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">SportWidget</string>
+    <string name="tv1">Пн. 20:00 BODYPUMP(55), Алексей З., Большой зал</string>
+    <string name="tv2">Пн. 20:00 BODYPUMP(55), Алексей З., Большой зал</string>
+    <string name="tv3">Пн. 20:00 BODYPUMP(55), Алексей З., Большой зал</string>
+    <string name="tv4">Пн. 20:00 BODYPUMP(55), Алексей З., Большой зал</string>
+    <string name="menu_refresh">Обновить \n расписание</string>
+    <string name="menu_selected">Мои \n занятия</string>
+    <string name="menu_select_by_type">Виды \n занятий</string>
+    <string name="menu_select_by_programm">Виды \n программ</string>
+    <string name="menu_select_by_trainer">Тренеры \n</string>
+    <string name="pr_prefs">Настройки</string>
+    <string name="pr_city">City</string>
+    <string name="pr_club">Club</string>
+    <string name="pr_room">Room</string>
+    <string name="pr_trainer">Trainer</string>
+    <string name="pr_programm">Programm</string>
+    <string name="pr_type">Type</string>
+    <string name="pr_sync">Type</string>
+    <string name="pr_notif">Openmode</string>
+    <string name="pr_notif_time">Включение напоминаний</string>
+    <string name="pr_title_city">Мой город</string>
+    <string name="pr_title_sync">Синронизровать данные</string>
+    <string name="pr_title_room"></string>
+    <string name="pr_title_trainer"></string>
+    <string name="pr_title_notif">Включение уведомлений</string>
+    <string name="pr_title_notif_time">Интервал напоминания</string>
+    <string name="pr_summary_notif">Показывать напоминания с указанием времени и названия занятия</string>
+    <string name="pr_summary_notif_time">За какое время до начала занятия напомнить? </string>
+    <string name="pr_summary_city"></string>
+    <string name="pr_summary_club"></string>
+    <string name="pr_summary_room"></string>
+    <string name="pr_summary_trainer"></string>
+    <string name="pr_summary_sync"></string>
+    <string name="training">Занятие:</string>
+    <string name="time_start">Начало:</string>
+    <string name="duration">Продолжительность:</string>
+    <string name="trainer">Тренер:</string>
+    <string name="place">Место проведения:</string>
+    <string name="notes">Особые отметки:</string>
+    <string name="description">Описание занятия:</string>
+	<string name="dlg_city">Введите название города:</string>
+	<string name="dlg_sync">Последняя синхронизация:</string>
+	<string name="dlg_time">Напомнить за</string>
+	<string name="clickHandler">clickHandler</string>
+</resources>

@@ -1,0 +1,30 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <PreferenceCategory android:title="@string/pr_prefs" >
+        <EditTextPreference
+            android:defaultValue="13 12:00 03/06/2012"
+            android:dialogTitle="@string/dlg_sync"
+            android:key="@string/pr_sync"
+            android:summary="@string/pr_summary_sync"
+            android:title="@string/pr_title_sync" />
+
+        <CheckBoxPreference
+            android:key="@string/pr_notif"
+            android:summary="@string/pr_summary_notif"
+            android:title="@string/pr_title_notif" />
+
+        <EditTextPreference
+            android:defaultValue="5 часов"
+            android:dialogTitle="@string/dlg_time"
+            android:key="@string/pr_notif_time"
+            android:summary="@string/pr_summary_notif_time"
+            android:title="@string/pr_title_notif_time" />
+        <EditTextPreference
+            android:defaultValue="Москва"
+            android:dialogTitle="@string/dlg_city"
+            android:key="@string/pr_city"
+            android:summary=""
+            android:title="@string/pr_title_city" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

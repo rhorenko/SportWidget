@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/widget"
+    style="@style/WidgetBackground"
+    android:layout_width="320dp"
+    android:layout_height="130dp"
+    android:layout_gravity="center"
+    android:layout_margin="8dip"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/tv1"
+        style="@style/Text.Loading"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|center"
+        android:layout_marginTop="18dip"
+        android:text="@string/tv1"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/tv2"
+        style="@style/Text.Loading"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|center"
+        android:text="@string/tv2"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/tv3"
+        style="@style/Text.Loading"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|center"
+        android:text="@string/tv3"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/tv4"
+        style="@style/Text.Loading"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|center"
+        android:text="@string/tv4"
+        android:textSize="12sp" />
+
+</LinearLayout>
