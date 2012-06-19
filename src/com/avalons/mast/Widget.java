@@ -29,6 +29,7 @@ import android.widget.RemoteViews;
  * Define a simple widget that shows the sport schedule. 
  */
 public class Widget extends AppWidgetProvider {
+	public static final String TAG = "SportWidget->Widget"; 
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager,
             int[] appWidgetIds) {

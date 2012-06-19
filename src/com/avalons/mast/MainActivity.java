@@ -23,9 +23,9 @@ import android.widget.Toast;
 public class MainActivity extends Activity
 {
 	ProgressDialog progress;
-    public static final String TAG = "SportWidget"; 
-    String getcitiesUrl = "http://test.epigrammi.net/api?act=getcities";
-    String getsheduleUrl = "http://test.epigrammi.net/api?act=getshedule&club_id=1";
+    public static final String TAG = "SportWidget->MainActivity"; 
+    public static final String getCitiesUrl = "http://test.epigrammi.net/api?act=getcities";
+    public static final String getSheduleUrl = "http://test.epigrammi.net/api?act=getshedule&club_id=4";
 	private final int IDD_DIALOG = 0;
     //private Button selected; 
     //private Button types_training; 
@@ -58,7 +58,8 @@ public class MainActivity extends Activity
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState); 
         setContentView(R.layout.main);
-        new DownloadDataTask(getApplicationContext(),getcitiesUrl).execute();
+        new DownloadDataTask(getApplicationContext(), getCitiesUrl).execute();
+        //new DownloadDataTask(getApplicationContext(),getSheduleUrl).execute();
         parameter=null;
         //selected = (Button)findViewById(R.id.button1); 
         //types_training = (Button)findViewById(R.id.button2); 

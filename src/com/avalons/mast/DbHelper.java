@@ -8,7 +8,8 @@ import android.provider.BaseColumns;
 
 public class DbHelper extends SQLiteOpenHelper 
         implements BaseColumns {
-    
+	public static final String TAG = "SportWidget->DbHelper"; 
+	
     public static final String TABLE_NAME = "schedule";
     public static final String CITY = "city";
     public static final String ROOM = "room";

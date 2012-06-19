@@ -13,6 +13,7 @@ import android.net.Uri;
 import android.text.TextUtils;
 
 public class Provider extends ContentProvider {
+	public static final String TAG = "SportWidget->Provider"; 
 	
     public static final String DB_SCHEDULE = "schedule.db";
     
