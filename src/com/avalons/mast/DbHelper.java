@@ -28,7 +28,7 @@ public class DbHelper extends SQLiteOpenHelper
         super(context, Provider.DB_SCHEDULE, null, 1);
     }
     
-    @Override
+    
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE " + TABLE_NAME 
                 + " (_id INTEGER PRIMARY KEY AUTOINCREMENT, "
@@ -324,7 +324,7 @@ public class DbHelper extends SQLiteOpenHelper
     }
 
     
-    @Override
+    
     public void onUpgrade(
             SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);

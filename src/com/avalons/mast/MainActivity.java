@@ -3,6 +3,7 @@ package com.avalons.mast;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -14,8 +15,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
@@ -23,12 +22,16 @@ import android.widget.Toast;
 
 public class MainActivity extends Activity
 {
+	ProgressDialog progress;
+    public static final String TAG = "SportWidget"; 
+    String getcitiesUrl = "http://test.epigrammi.net/api?act=getcities";
+    String getsheduleUrl = "http://test.epigrammi.net/api?act=getshedule&club_id=1";
 	private final int IDD_DIALOG = 0;
-    private Button selected; 
-    private Button types_training; 
-    private Button types_program; 
-    private Button trainers;
-    private ImageButton prefs;
+    //private Button selected; 
+    //private Button types_training; 
+    //private Button types_program; 
+    //private Button trainers;
+    //private ImageButton prefs;
     private Cursor mCursor; 
     private ListAdapter mAdapter;
     ListView lv;
@@ -51,16 +54,17 @@ public class MainActivity extends Activity
             DbHelper.ISSELECTED,
             DbHelper.ADAPTER};
 
-    @Override
+    
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState); 
         setContentView(R.layout.main);
+        new DownloadDataTask(getApplicationContext(),getcitiesUrl).execute();
         parameter=null;
-        selected = (Button)findViewById(R.id.button1); 
-        types_training = (Button)findViewById(R.id.button2); 
-        types_program = (Button)findViewById(R.id.button3); 
-        trainers = (Button)findViewById(R.id.button4);
-        prefs = (ImageButton)findViewById(R.id.imageButton1);
+        //selected = (Button)findViewById(R.id.button1); 
+        //types_training = (Button)findViewById(R.id.button2); 
+        //types_program = (Button)findViewById(R.id.button3); 
+        //trainers = (Button)findViewById(R.id.button4);
+        //prefs = (ImageButton)findViewById(R.id.imageButton1);
         mCursor = managedQuery(
                 Provider.CONTENT_URI, mContent, parameter, null, null);
         
@@ -161,6 +165,11 @@ public class MainActivity extends Activity
         return null;
         }
     }
-
+	
+	public void createNotif(String notif){
+		
+		Toast.makeText(getApplicationContext(), "Don't work yet!", Toast.LENGTH_SHORT).show();
+		
+	}
 	
 }

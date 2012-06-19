@@ -16,27 +16,17 @@
 
 package com.avalons.mast;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import android.app.PendingIntent;
 import android.app.Service;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Resources;
-import android.net.ParseException;
-import android.net.Uri;
 import android.os.IBinder;
-import android.text.format.Time;
-import android.util.Log;
 import android.widget.RemoteViews;
 
 /**
- * Define a simple widget that shows the Wiktionary "Word of the day." To build
- * an update we spawn a background {@link Service} to perform the API queries.
+ * Define a simple widget that shows the sport schedule. 
  */
 public class Widget extends AppWidgetProvider {
     @Override
