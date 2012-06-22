@@ -10,7 +10,6 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
@@ -34,7 +33,7 @@ public class DownloadDataTask extends AsyncTask<Void, Void,String>{
     };
   
     
-protected String doInBackground(Void... values) {
+    protected String doInBackground(Void... values) {
 	try
 	   {
 	   HttpClient httpclient = new DefaultHttpClient();
@@ -58,24 +57,25 @@ protected String doInBackground(Void... values) {
 		 is.close();
 		 result=sb.toString();
 		 	}
-	catch(Exception e)
+		catch(Exception e)
 		{
 		    Log.e(TAG, "Error converting result "+e.toString());
 		 }
 	//Log.e(TAG, "result="+result);
 	return result;
 	 
-}
+	}
 
-protected void onProgressUpdate(Void... values) {
-	super.onProgressUpdate(values);
-	//dialog.show();
-}
+	protected void onProgressUpdate(Void... values) {
+		super.onProgressUpdate(values);
+		//dialog.show();
+	}
 
-protected void onPostExecute(String result) {
-	super.onPostExecute(result);
-	JSONParser mJSONParser = new JSONParser(result);
-	
-	//dialog.dismiss();
-}
+	protected void onPostExecute(String result) {
+		super.onPostExecute(result);
+		JSONParser mJSONParser = new JSONParser(mContext,result);	
+		//dialog.dismiss();
+	}
+
+
 }

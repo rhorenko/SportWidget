@@ -11,6 +11,7 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.text.TextUtils;
+import android.util.Log;
 
 public class Provider extends ContentProvider {
 	public static final String TAG = "SportWidget->Provider"; 
@@ -29,14 +30,15 @@ public class Provider extends ContentProvider {
 
     static {
         mUriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
-        mUriMatcher.addURI("com.avalons.schedule.schedule", 
+        mUriMatcher.addURI("com.avalons.mast.provider", 
                 DbHelper.TABLE_NAME, URI_CODE);
-        mUriMatcher.addURI("com.avalons.schedule.schedule", 
+        mUriMatcher.addURI("com.avalons.mast.provider", 
                 DbHelper.TABLE_NAME + "/#", URI_CODE_ID);
 
         mContactMap = new HashMap<String, String>();
         mContactMap.put(DbHelper._ID, DbHelper._ID);
         mContactMap.put(DbHelper.CITY, DbHelper.CITY);
+        mContactMap.put(DbHelper.CLUB, DbHelper.CLUB);
         mContactMap.put(DbHelper.ROOM, DbHelper.ROOM);
         mContactMap.put(DbHelper.TYPE_TRAINING, DbHelper.TYPE_TRAINING);
         mContactMap.put(DbHelper.TYPE_PROGRAM, DbHelper.TYPE_PROGRAM);
@@ -49,6 +51,7 @@ public class Provider extends ContentProvider {
         mContactMap.put(DbHelper.NOTES, DbHelper.NOTES);
         mContactMap.put(DbHelper.DESCRIPTION, DbHelper.DESCRIPTION);
         mContactMap.put(DbHelper.ADAPTER, DbHelper.ADAPTER);
+        mContactMap.put(DbHelper.ISSELECTED, DbHelper.ISSELECTED);
     }
 
     public String getDbName() {
@@ -68,7 +71,7 @@ public class Provider extends ContentProvider {
       
         String orderBy;       
         if (TextUtils.isEmpty(sort)) {
-            orderBy = DbHelper.CITY;
+            orderBy = DbHelper._ID;
         } 
         else {
             orderBy = sort;
@@ -84,8 +87,9 @@ public class Provider extends ContentProvider {
     public Uri insert(Uri url, ContentValues inValues) {
 
         ContentValues values = new ContentValues(inValues);
-
-        long rowId = db.insert(DbHelper.TABLE_NAME, DbHelper.CITY, values);
+        
+        long rowId = db.insert(DbHelper.TABLE_NAME, DbHelper._ID, values);
+        
         if (rowId > 0) {
             Uri uri = ContentUris.withAppendedId(CONTENT_URI, rowId);
             getContext().getContentResolver().notifyChange(uri, null);

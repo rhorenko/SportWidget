@@ -9,7 +9,6 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,6 +39,7 @@ public class MainActivity extends Activity
     private static final String[] mContent = new String[] {
             DbHelper._ID, 
             DbHelper.CITY,
+            DbHelper.CLUB,
             DbHelper.ROOM,
             DbHelper.TYPE_TRAINING,
             DbHelper.TYPE_PROGRAM,
@@ -58,8 +58,8 @@ public class MainActivity extends Activity
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState); 
         setContentView(R.layout.main);
-        new DownloadDataTask(getApplicationContext(), getCitiesUrl).execute();
-        //new DownloadDataTask(getApplicationContext(),getSheduleUrl).execute();
+        //new DownloadDataTask(getApplicationContext(), getCitiesUrl).execute();
+        new DownloadDataTask(getApplicationContext(),getSheduleUrl).execute();
         parameter=null;
         //selected = (Button)findViewById(R.id.button1); 
         //types_training = (Button)findViewById(R.id.button2); 
@@ -80,8 +80,7 @@ public class MainActivity extends Activity
             
  			public void onItemClick(AdapterView<?> arg0, View arg1, int position,
  					long arg3) { 				
- 				Log.d("----", "---------------------------------------");
- 				
+ 				 				
  				showDialog(IDD_DIALOG);
      			
  			}}
@@ -114,11 +113,7 @@ public class MainActivity extends Activity
     public void onResume() {
         super.onResume();
         SharedPreferences prefs = 
-            PreferenceManager.getDefaultSharedPreferences(this);
-        
-        
-       
-        
+            PreferenceManager.getDefaultSharedPreferences(this);       
     }
    
 

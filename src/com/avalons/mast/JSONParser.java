@@ -6,17 +6,20 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.content.ContentValues;
+import android.content.Context;
 import android.util.Log;
 
 public class JSONParser {
-	public static final String TAG = "SportWidget->JSONParser"; 
+	public static final String TAG = "SportWidget->JSONParser"; 		
+	Context mContext;
 	
-	int    city_id;
-	String city_name="";
+	int city_id;
+	String city_name="Новгород";
 	
-	int    club_id;
-	String club_name;
-	String club_addr;
+	int club_id;
+	String club_name="club_name";
+	String club_addr="club_addr";
 	
 	Vector ids=new Vector();
 	Vector days=new Vector();
@@ -26,9 +29,10 @@ public class JSONParser {
 	Vector times=new Vector();
 	Vector abouts=new Vector();
 	Vector lengths=new Vector();
+	
 	//Constructor
-	public JSONParser(String res){
-		
+	public JSONParser(Context context,String res){
+		mContext=context;
 		if ((res.contains("0")|
 			   res.contains("1")|
 			   res.contains("2")|
@@ -46,6 +50,10 @@ public class JSONParser {
 		{
 			parseCities(res);			
 		};
+		
+		
+		
+		JSONtoDatabase(mContext);
 	};
 	
 	public void parseCities(String result){
@@ -71,7 +79,7 @@ public class JSONParser {
 		     }
 		catch(JSONException e)
 			{
-		     Log.e(TAG, "Error parsing data "+e.toString());
+		     Log.e(TAG, "Error parsing data cities"+e.toString());
 		     }
 	};
 	
@@ -91,20 +99,52 @@ public class JSONParser {
 				times.add(    jTile.getString("time"));
 				abouts.add(   jTile.getString("about"));
 				lengths.add(  jTile.getInt("length"));
-				
-				/**Log.i(TAG,"ids["+i+"]="+ids.get(i)+
+				//Delete comment signs for logging	
+				Log.i(TAG,"ids["+i+"]="+ids.get(i)+
 							 "days["+i+"]="+days.get(i)+
 							 "titles["+i+"]="+titles.get(i)+
 							 "trainers["+i+"]="+trainers.get(i)+
 							 "places["+i+"]="+places.get(i)+
 							 "times["+i+"]="+times.get(i)+
 							 "abouts["+i+"]="+abouts.get(i)+
-							 "lengths["+i+"]="+lengths.get(i)+"\n");*/
+							 "lengths["+i+"]="+lengths.get(i)+"\n");
+				
 			}
 			
 		} catch (JSONException e) {
-			
+			Log.e(TAG, "Error parsing data shedule"+e.toString());
 		}
 	};
-
+	
+	private void JSONtoDatabase(Context context){
+		//Cursor mCursor= provider.query(Provider.CONTENT_URI, mContent, null, null, null);
+				
+		//ContentValues[] mValues=new ContentValues[ids.size()]; 
+        for (int i = 0; i < ids.size(); i++) {	
+        	
+        	ContentValues values = new ContentValues(2);
+        	
+        	values.put(DbHelper.CITY, ""+city_name);
+        	values.put(DbHelper.CLUB, ""+club_name);
+        	values.put(DbHelper.ROOM, "");
+        	values.put(DbHelper.TYPE_TRAINING, ""+titles.get(i).toString());
+        	values.put(DbHelper.TYPE_PROGRAM, "");
+        	values.put(DbHelper.TRAINING, "");
+        	values.put(DbHelper.DAY, ""+days.get(i).toString());
+        	values.put(DbHelper.TIME_START, ""+times.get(i).toString());
+        	values.put(DbHelper.DURATION, ""+lengths.get(i).toString());
+        	values.put(DbHelper.TRAINER, ""+trainers.get(i).toString());
+        	values.put(DbHelper.PLACE, ""+places.get(i).toString());
+        	values.put(DbHelper.NOTES, "");
+        	values.put(DbHelper.DESCRIPTION, ""+abouts.get(i).toString());
+        	values.put(DbHelper.ISSELECTED, "-");
+        	values.put(DbHelper.ADAPTER, "");
+        	
+        	context.getContentResolver().insert(Provider.CONTENT_URI, values);
+        	Log.i(TAG, "Inserted!"+i);
+        
+        }
+        
+        
+	 };
 }

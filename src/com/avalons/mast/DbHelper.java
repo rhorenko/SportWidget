@@ -12,6 +12,7 @@ public class DbHelper extends SQLiteOpenHelper
 	
     public static final String TABLE_NAME = "schedule";
     public static final String CITY = "city";
+    public static final String CLUB = "club";
     public static final String ROOM = "room";
     public static final String TYPE_TRAINING = "type_training";
     public static final String TYPE_PROGRAM = "type_program";
@@ -34,6 +35,7 @@ public class DbHelper extends SQLiteOpenHelper
         db.execSQL("CREATE TABLE " + TABLE_NAME 
                 + " (_id INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + CITY + " TEXT, "
+                + CLUB +" TEXT, "
                 + ROOM + " TEXT, "
                 + TYPE_TRAINING + " TEXT, "
                 + TYPE_PROGRAM + " TEXT, "
@@ -51,6 +53,7 @@ public class DbHelper extends SQLiteOpenHelper
         ContentValues values = new ContentValues();
                       
         values.put(CITY, "Нижний Новгород");
+        values.put(CLUB, "World Class Пушкинский");
         values.put(ROOM, "Спорт");
         values.put(TYPE_TRAINING, "Групповые программы");
         values.put(TYPE_PROGRAM, "Программы Les Mills");
@@ -67,6 +70,7 @@ public class DbHelper extends SQLiteOpenHelper
         db.insert(TABLE_NAME, CITY, values);  
         
         values.put(CITY, "Нижний Новгород");
+        values.put(CLUB, "World Class Пушкинский");
         values.put(ROOM, "Спорт");
         values.put(TYPE_TRAINING, "Групповые программы");
         values.put(TYPE_PROGRAM, "Программы Les Mills");
@@ -83,6 +87,7 @@ public class DbHelper extends SQLiteOpenHelper
         db.insert(TABLE_NAME, CITY, values);
         
         values.put(CITY, "Нижний Новгород");
+        values.put(CLUB, "World Class Пушкинский");
         values.put(ROOM, "Спорт");
         values.put(TYPE_TRAINING, "Групповые программы");
         values.put(TYPE_PROGRAM, "Программы Les Mills");
@@ -99,6 +104,7 @@ public class DbHelper extends SQLiteOpenHelper
         db.insert(TABLE_NAME, CITY, values);
         
         values.put(CITY, "Нижний Новгород");
+        values.put(CLUB, "World Class Пушкинский");
         values.put(ROOM, "Спорт");
         values.put(TYPE_TRAINING, "Групповые программы");
         values.put(TYPE_PROGRAM, "Программы Les Mills");
@@ -115,6 +121,7 @@ public class DbHelper extends SQLiteOpenHelper
         db.insert(TABLE_NAME, CITY, values);
         
         values.put(CITY, "Нижний Новгород");
+        values.put(CLUB, "World Class Пушкинский");
         values.put(ROOM, "Спорт");
         values.put(TYPE_TRAINING, "Групповые программы");
         values.put(TYPE_PROGRAM, "Программы Les Mills");
@@ -131,6 +138,7 @@ public class DbHelper extends SQLiteOpenHelper
         db.insert(TABLE_NAME, CITY, values);
         
         values.put(CITY, "Нижний Новгород");
+        values.put(CLUB, "World Class Пушкинский");
         values.put(ROOM, "Спорт");
         values.put(TYPE_TRAINING, "Групповые программы");
         values.put(TYPE_PROGRAM, "Программы Les Mills");
@@ -147,6 +155,7 @@ public class DbHelper extends SQLiteOpenHelper
         db.insert(TABLE_NAME, CITY, values);
         
         values.put(CITY, "Нижний Новгород");
+        values.put(CLUB, "World Class Пушкинский");
         values.put(ROOM, "Спорт");
         values.put(TYPE_TRAINING, "Групповые программы");
         values.put(TYPE_PROGRAM, "Программы Les Mills");
@@ -163,6 +172,7 @@ public class DbHelper extends SQLiteOpenHelper
         db.insert(TABLE_NAME, CITY, values);
         
         values.put(CITY, "Нижний Новгород");
+        values.put(CLUB, "World Class Пушкинский");
         values.put(ROOM, "Спорт");
         values.put(TYPE_TRAINING, "Групповые программы");
         values.put(TYPE_PROGRAM, "Программы Les Mills");
@@ -179,6 +189,7 @@ public class DbHelper extends SQLiteOpenHelper
         db.insert(TABLE_NAME, CITY, values);
         
         values.put(CITY, "Нижний Новгород");
+        values.put(CLUB, "World Class Пушкинский");
         values.put(ROOM, "Спорт");
         values.put(TYPE_TRAINING, "Групповые программы");
         values.put(TYPE_PROGRAM, "Программы Les Mills");
@@ -195,6 +206,7 @@ public class DbHelper extends SQLiteOpenHelper
         db.insert(TABLE_NAME, CITY, values);
         
         values.put(CITY, "Нижний Новгород");
+        values.put(CLUB, "World Class Пушкинский");
         values.put(ROOM, "Спорт");
         values.put(TYPE_TRAINING, "Групповые программы");
         values.put(TYPE_PROGRAM, "Программы Les Mills");
@@ -211,6 +223,7 @@ public class DbHelper extends SQLiteOpenHelper
         db.insert(TABLE_NAME, CITY, values);
         
         values.put(CITY, "Нижний Новгород");
+        values.put(CLUB, "World Class Пушкинский");
         values.put(ROOM, "Спорт");
         values.put(TYPE_TRAINING, "Групповые программы");
         values.put(TYPE_PROGRAM, "Программы Les Mills");
@@ -227,6 +240,7 @@ public class DbHelper extends SQLiteOpenHelper
         db.insert(TABLE_NAME, CITY, values);
         
         values.put(CITY, "Нижний Новгород");
+        values.put(CLUB, "World Class Пушкинский");
         values.put(ROOM, "Спорт");
         values.put(TYPE_TRAINING, "Групповые программы");
         values.put(TYPE_PROGRAM, "Программы Les Mills");
@@ -243,6 +257,7 @@ public class DbHelper extends SQLiteOpenHelper
         db.insert(TABLE_NAME, CITY, values);
         
         values.put(CITY, "Нижний Новгород");
+        values.put(CLUB, "World Class Пушкинский");
         values.put(ROOM, "Спорт");
         values.put(TYPE_TRAINING, "Групповые программы");
         values.put(TYPE_PROGRAM, "Программы Les Mills");
@@ -259,6 +274,7 @@ public class DbHelper extends SQLiteOpenHelper
         db.insert(TABLE_NAME, CITY, values);
         
         values.put(CITY, "Нижний Новгород");
+        values.put(CLUB, "World Class Пушкинский");
         values.put(ROOM, "Спорт");
         values.put(TYPE_TRAINING, "Групповые программы");
         values.put(TYPE_PROGRAM, "Программы Les Mills");
@@ -275,6 +291,7 @@ public class DbHelper extends SQLiteOpenHelper
         db.insert(TABLE_NAME, CITY, values);
         
         values.put(CITY, "Нижний Новгород");
+        values.put(CLUB, "World Class Пушкинский");
         values.put(ROOM, "Спорт");
         values.put(TYPE_TRAINING, "Групповые программы");
         values.put(TYPE_PROGRAM, "Программы Les Mills");
@@ -291,6 +308,7 @@ public class DbHelper extends SQLiteOpenHelper
         db.insert(TABLE_NAME, CITY, values);
         
         values.put(CITY, "Нижний Новгород");
+        values.put(CLUB, "World Class Пушкинский");
         values.put(ROOM, "Спорт");
         values.put(TYPE_TRAINING, "Групповые программы");
         values.put(TYPE_PROGRAM, "Программы Les Mills");
@@ -307,6 +325,7 @@ public class DbHelper extends SQLiteOpenHelper
         db.insert(TABLE_NAME, CITY, values);
         
         values.put(CITY, "Нижний Новгород");
+        values.put(CLUB, "World Class Пушкинский");
         values.put(ROOM, "Спорт");
         values.put(TYPE_TRAINING, "Групповые программы");
         values.put(TYPE_PROGRAM, "Программы Les Mills");
