@@ -4,22 +4,32 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.BaseAdapter;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.SimpleCursorAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
-public class MainActivity extends Activity
+public class MainActivity extends Activity 
 {
 	ProgressDialog progress;
     public static final String TAG = "SportWidget->MainActivity"; 
@@ -33,7 +43,8 @@ public class MainActivity extends Activity
     //private ImageButton prefs;
     private Cursor mCursor; 
     private ListAdapter mAdapter;
-    ListView lv;
+    private ListView lv;
+    
     private String parameter;
     //private String day,time_start,type_program,duration,trainer,place;
     private static final String[] mContent = new String[] {
@@ -59,7 +70,7 @@ public class MainActivity extends Activity
         super.onCreate(savedInstanceState); 
         setContentView(R.layout.main);
         //new DownloadDataTask(getApplicationContext(), getCitiesUrl).execute();
-        new DownloadDataTask(getApplicationContext(),getSheduleUrl).execute();
+        //new DownloadDataTask(getApplicationContext(),getSheduleUrl).execute();
         parameter=null;
         //selected = (Button)findViewById(R.id.button1); 
         //types_training = (Button)findViewById(R.id.button2); 
@@ -69,22 +80,25 @@ public class MainActivity extends Activity
         mCursor = managedQuery(
                 Provider.CONTENT_URI, mContent, parameter, null, null);
         
-        mAdapter = new SimpleCursorAdapter(this, 
+        mAdapter = new SportAdapter(getApplicationContext(), 
                 R.layout.item, mCursor, 
-                new String[] {DbHelper.DAY, DbHelper.TIME_START, DbHelper.ADAPTER}, 
-                new int[] {R.id.day, R.id.timetile, R.id.tile});           
+                new String[] {DbHelper._ID,DbHelper.DAY, DbHelper.TIME_START, DbHelper.ADAPTER}, 
+                new int[] {R.id.id,R.id.day, R.id.timetile, R.id.tile});           
         lv = (ListView)findViewById(R.id.lv);
+        
         lv.setAdapter(mAdapter);
-        lv.setItemsCanFocus(false);        
+                
+        
         lv.setOnItemClickListener(new OnItemClickListener() {
             
  			public void onItemClick(AdapterView<?> arg0, View arg1, int position,
- 					long arg3) { 				
- 				 				
+ 					long arg3) { 	 				
+ 				
  				showDialog(IDD_DIALOG);
      			
  			}}
-         ); 		
+         ); 	
+        
         
     }
     
@@ -167,5 +181,6 @@ public class MainActivity extends Activity
 		Toast.makeText(getApplicationContext(), "Don't work yet!", Toast.LENGTH_SHORT).show();
 		
 	}
+	
 	
 }

@@ -18,38 +18,40 @@ public final class R {
         public static final int widget_bg_selected=0x7f020004;
     }
     public static final class id {
-        public static final int button1=0x7f070014;
-        public static final int button2=0x7f070015;
-        public static final int button3=0x7f070016;
-        public static final int button4=0x7f070017;
-        public static final int cb=0x7f070011;
-        public static final int day=0x7f07000f;
+        public static final int button1=0x7f070016;
+        public static final int button2=0x7f070017;
+        public static final int button3=0x7f070018;
+        public static final int button4=0x7f070019;
+        public static final int cb=0x7f070013;
+        public static final int day=0x7f070011;
         public static final int description=0x7f07000d;
         public static final int description_tile=0x7f07000e;
         public static final int duration=0x7f070005;
         public static final int duration_tile=0x7f070006;
-        public static final int imageButton1=0x7f070018;
+        public static final int id=0x7f070010;
+        public static final int imageButton1=0x7f07001a;
         public static final int layout=0x7f070000;
-        public static final int ll=0x7f070013;
-        public static final int lv=0x7f070019;
-        public static final int message=0x7f07001f;
+        public static final int ll=0x7f070015;
+        public static final int lv=0x7f07001b;
+        public static final int message=0x7f070021;
         public static final int notes=0x7f07000b;
         public static final int notes_tile=0x7f07000c;
         public static final int place=0x7f070009;
         public static final int place_tile=0x7f07000a;
-        public static final int tile=0x7f070012;
+        public static final int rl=0x7f07000f;
+        public static final int tile=0x7f070014;
         public static final int time_start=0x7f070003;
         public static final int time_start_tile=0x7f070004;
-        public static final int timetile=0x7f070010;
+        public static final int timetile=0x7f070012;
         public static final int trainer=0x7f070007;
         public static final int trainer_tile=0x7f070008;
         public static final int training=0x7f070001;
         public static final int trainingtile=0x7f070002;
-        public static final int tv1=0x7f07001b;
-        public static final int tv2=0x7f07001c;
-        public static final int tv3=0x7f07001d;
-        public static final int tv4=0x7f07001e;
-        public static final int widget=0x7f07001a;
+        public static final int tv1=0x7f07001d;
+        public static final int tv2=0x7f07001e;
+        public static final int tv3=0x7f07001f;
+        public static final int tv4=0x7f070020;
+        public static final int widget=0x7f07001c;
     }
     public static final class layout {
         public static final int abouttile=0x7f030000;
