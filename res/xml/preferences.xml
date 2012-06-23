@@ -2,7 +2,8 @@
 
     <PreferenceCategory android:title="@string/pr_prefs" >
         <EditTextPreference
-            android:defaultValue="13 12:00 03/06/2012"
+            
+            android:defaultValue="2012/06/03 15:00:12"
             android:dialogTitle="@string/dlg_sync"
             android:key="@string/pr_sync"
             android:summary="@string/pr_summary_sync"

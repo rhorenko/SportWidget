@@ -18,8 +18,8 @@ public class SportAdapter extends SimpleCursorAdapter{
 	public static final String TAG = "SportWidget->SportAdapter"; 
 	private CheckBox mCheckBox;
     private TextView mTextId;
-	private Context mListContext;
-	private Cursor mCursor;
+	private Context  mListContext;
+	private Cursor   mCursor;
      public SportAdapter(Context context, int layout, Cursor c, String[] from,
 			int[] to) {
 		super(context, layout, c, from, to);

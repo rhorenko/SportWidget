@@ -1,32 +1,24 @@
 package com.avalons.mast;
 
+import java.util.Calendar;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
-import android.content.ContentValues;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.BaseAdapter;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
-import android.widget.CompoundButton.OnCheckedChangeListener;
-import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.SimpleCursorAdapter;
-import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends Activity 
@@ -181,6 +173,28 @@ public class MainActivity extends Activity
 		Toast.makeText(getApplicationContext(), "Don't work yet!", Toast.LENGTH_SHORT).show();
 		
 	}
-	
+	public String getTime(){
+		StringBuilder time;
+		final Calendar c = Calendar.getInstance();
+		int mYear = c.get(Calendar.YEAR);
+		int mMonth = c.get(Calendar.MONTH);
+		int mDay = c.get(Calendar.DAY_OF_MONTH);
+        int mHour = c.get(Calendar.HOUR_OF_DAY);
+        int mMinute = c.get(Calendar.MINUTE);
+        int mSecond = c.get(Calendar.SECOND);
+		time = new StringBuilder()
+        	.append(mYear)
+        	.append("/")
+        	.append(mMonth)
+        	.append("/")
+        	.append(mDay)
+        	.append(" ")
+        	.append(mHour)
+        	.append(":")
+        	.append(mMinute)
+        	.append(":")
+        	.append(mSecond);
+		return time.toString();
+	};
 	
 }
