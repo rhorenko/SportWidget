@@ -69,6 +69,8 @@ public class MainActivity extends Activity
         //types_program = (Button)findViewById(R.id.button3); 
         //trainers = (Button)findViewById(R.id.button4);
         //prefs = (ImageButton)findViewById(R.id.imageButton1);
+        //SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);
+        //settings.getString("Type", defValue);
         mCursor = managedQuery(
                 Provider.CONTENT_URI, mContent, parameter, null, null);
         
@@ -196,5 +198,10 @@ public class MainActivity extends Activity
         	.append(mSecond);
 		return time.toString();
 	};
-	
+	public void sync(){
+		String time;
+		new DownloadDataTask(getApplicationContext(),getSheduleUrl).execute();
+		time=getTime();
+		
+	};
 }

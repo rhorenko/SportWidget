@@ -1,18 +1,21 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <PreferenceCategory android:title="@string/pr_prefs" >
-        <EditTextPreference
+        <com.avalons.mast.SyncDialogPreferences
             
             android:defaultValue="2012/06/03 15:00:12"
             android:dialogTitle="@string/dlg_sync"
             android:key="@string/pr_sync"
             android:summary="@string/pr_summary_sync"
-            android:title="@string/pr_title_sync" />
+            android:title="@string/pr_title_sync"
+            android:positiveButtonText="@string/menu_refresh" 
+            />
 
         <CheckBoxPreference
             android:key="@string/pr_notif"
             android:summary="@string/pr_summary_notif"
-            android:title="@string/pr_title_notif" />
+            android:title="@string/pr_title_notif" 
+            />
 
         <EditTextPreference
             android:defaultValue="5 часов"
