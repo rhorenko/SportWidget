@@ -1,7 +1,5 @@
 package com.avalons.mast;
 
-import java.util.Calendar;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -10,7 +8,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,13 +16,14 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends Activity {
 	ProgressDialog progress;
 	public static final String TAG = "SportWidget->MainActivity";
 	public static final String getCitiesUrl = "http://test.epigrammi.net/api?act=getcities";
-
+	private int mPosition;
 	private final int IDD_DIALOG = 0;
 	// private Button selected;
 	// private Button types_training;
@@ -56,7 +54,7 @@ public class MainActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
-
+		mPosition=0;
 		showOnlySelected = false;
 		// new DownloadDataTask(getApplicationContext(),
 		// getCitiesUrl).execute();
@@ -86,7 +84,7 @@ public class MainActivity extends Activity {
 
 			public void onItemClick(AdapterView<?> arg0, View arg1,
 					int position, long arg3) {
-
+				mPosition=position;
 				showDialog(IDD_DIALOG);
 
 			}
@@ -198,7 +196,28 @@ public class MainActivity extends Activity {
 					(ViewGroup) findViewById(R.id.layout));
 			AlertDialog.Builder builder = new AlertDialog.Builder(this);
 			builder.setView(layout);
-
+			
+			Cursor mCursor;
+			TextView trainingTile=(TextView)layout.findViewById(R.id.trainingtile);
+			TextView timeStart=(TextView)layout.findViewById(R.id.time_start_tile);
+			TextView durationTile=(TextView)layout.findViewById(R.id.duration_tile);
+			TextView trainerTile=(TextView)layout.findViewById(R.id.trainer_tile);
+			TextView placeTile=(TextView)layout.findViewById(R.id.place_tile);
+			TextView notesTile=(TextView)layout.findViewById(R.id.notes_tile);
+			TextView descriptionTile=(TextView)layout.findViewById(R.id.description_tile);
+			
+			mCursor=managedQuery(Provider.CONTENT_URI, mContent, null, null,
+					null);
+			mCursor.moveToPosition(mPosition);
+			
+			trainingTile.setText(mCursor.getString(6));
+			timeStart.setText(mCursor.getString(8));
+			durationTile.setText(mCursor.getString(9));
+			trainerTile.setText(mCursor.getString(10));
+			placeTile.setText(mCursor.getString(11));
+			notesTile.setText(mCursor.getString(12));
+			descriptionTile.setText(mCursor.getString(13));
+	
 			return builder.create();
 		default:
 			return null;
