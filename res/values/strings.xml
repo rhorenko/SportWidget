@@ -8,10 +8,12 @@
     <string name="tv4">Пн. 20:00 BODYPUMP(55), Алексей З., Большой зал</string>
     <string name="menu_refresh">Обновить \n расписание</string>
     <string name="menu_selected">Мои \n занятия</string>
+    <string name="menu_all">Все \n занятия</string>
     <string name="menu_select_by_type">Виды \n занятий</string>
     <string name="menu_select_by_programm">Виды \n программ</string>
     <string name="menu_select_by_trainer">Тренеры \n</string>
     <string name="pr_prefs">Настройки</string>
+    <string name="pr_def_val_sync">2012/06/03 15:00:12</string>
     <string name="pr_city">City</string>
     <string name="pr_club">Club</string>
     <string name="pr_room">Room</string>

@@ -12,7 +12,7 @@
         android:layout_alignParentLeft="true"
         
         android:textSize="14sp" 
-        android:visibility="visible"/>
+        android:visibility="gone"/>
     <TextView
         android:id="@+id/day"
         android:layout_width="wrap_content"

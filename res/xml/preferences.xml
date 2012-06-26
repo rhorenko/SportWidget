@@ -3,7 +3,7 @@
     <PreferenceCategory android:title="@string/pr_prefs" >
         <com.avalons.mast.SyncDialogPreferences
             
-            android:defaultValue="2012/06/03 15:00:12"
+            android:defaultValue="@string/pr_def_val_sync"
             android:dialogTitle="@string/dlg_sync"
             android:key="@string/pr_sync"
             android:summary="@string/pr_summary_sync"

@@ -16,192 +16,200 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
 
-public class MainActivity extends Activity 
-{
+public class MainActivity extends Activity {
 	ProgressDialog progress;
-    public static final String TAG = "SportWidget->MainActivity"; 
-    public static final String getCitiesUrl = "http://test.epigrammi.net/api?act=getcities";
-    public static final String getSheduleUrl = "http://test.epigrammi.net/api?act=getshedule&club_id=4";
+	public static final String TAG = "SportWidget->MainActivity";
+	public static final String getCitiesUrl = "http://test.epigrammi.net/api?act=getcities";
+
 	private final int IDD_DIALOG = 0;
-    //private Button selected; 
-    //private Button types_training; 
-    //private Button types_program; 
-    //private Button trainers;
-    //private ImageButton prefs;
-    private Cursor mCursor; 
-    private ListAdapter mAdapter;
-    private ListView lv;
-    
-    private String parameter;
-    //private String day,time_start,type_program,duration,trainer,place;
-    private static final String[] mContent = new String[] {
-            DbHelper._ID, 
-            DbHelper.CITY,
-            DbHelper.CLUB,
-            DbHelper.ROOM,
-            DbHelper.TYPE_TRAINING,
-            DbHelper.TYPE_PROGRAM,
-            DbHelper.TRAINING,
-            DbHelper.DAY,
-            DbHelper.TIME_START,
-            DbHelper.DURATION,
-            DbHelper.TRAINER,
-            DbHelper.PLACE,
-            DbHelper.NOTES,
-            DbHelper.DESCRIPTION,
-            DbHelper.ISSELECTED,
-            DbHelper.ADAPTER};
+	// private Button selected;
+	// private Button types_training;
+	// private Button types_program;
+	// private Button trainers;
+	// private ImageButton prefs;
+	private Cursor mCursor;
+	private ListAdapter mAdapter;
+	private ListView lv;
+	private boolean showOnlySelected;
+	private String parameter;
+	// private String day,time_start,type_program,duration,trainer,place;
+	private static final String[] mContent = new String[] { DbHelper._ID,
+			DbHelper.CITY, DbHelper.CLUB, DbHelper.ROOM,
+			DbHelper.TYPE_TRAINING, DbHelper.TYPE_PROGRAM, DbHelper.TRAINING,
+			DbHelper.DAY, DbHelper.TIME_START, DbHelper.DURATION,
+			DbHelper.TRAINER, DbHelper.PLACE, DbHelper.NOTES,
+			DbHelper.DESCRIPTION, DbHelper.ISSELECTED, DbHelper.ADAPTER };
+	SharedPreferences prefs;
 
-    
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState); 
-        setContentView(R.layout.main);
-        //new DownloadDataTask(getApplicationContext(), getCitiesUrl).execute();
-        //new DownloadDataTask(getApplicationContext(),getSheduleUrl).execute();
-        parameter=null;
-        //selected = (Button)findViewById(R.id.button1); 
-        //types_training = (Button)findViewById(R.id.button2); 
-        //types_program = (Button)findViewById(R.id.button3); 
-        //trainers = (Button)findViewById(R.id.button4);
-        //prefs = (ImageButton)findViewById(R.id.imageButton1);
-        //SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);
-        //settings.getString("Type", defValue);
-        mCursor = managedQuery(
-                Provider.CONTENT_URI, mContent, parameter, null, null);
-        
-        mAdapter = new SportAdapter(getApplicationContext(), 
-                R.layout.item, mCursor, 
-                new String[] {DbHelper._ID,DbHelper.DAY, DbHelper.TIME_START, DbHelper.ADAPTER}, 
-                new int[] {R.id.id,R.id.day, R.id.timetile, R.id.tile});           
-        lv = (ListView)findViewById(R.id.lv);
-        
-        lv.setAdapter(mAdapter);
-                
-        
-        lv.setOnItemClickListener(new OnItemClickListener() {
-            
- 			public void onItemClick(AdapterView<?> arg0, View arg1, int position,
- 					long arg3) { 	 				
- 				
- 				showDialog(IDD_DIALOG);
-     			
- 			}}
-         ); 	
-        
-        
-    }
-    
-    public void clickHandler(View view){
-    	switch (view.getId()) {
-					case R.id.button1:
-						showOnlySelected(lv);
-						break;
-					case R.id.button2:
-						Toast.makeText(getApplicationContext(), "Don't work yet!", Toast.LENGTH_SHORT).show();
-						break;
-					case R.id.button3:
-						Toast.makeText(getApplicationContext(), "Don't work yet!", Toast.LENGTH_SHORT).show();
-						break;
-					case R.id.button4:
-						Toast.makeText(getApplicationContext(), "Don't work yet!", Toast.LENGTH_SHORT).show();
-						break;
-					case R.id.imageButton1:
-						Intent i = new Intent();
-		                i.setClass(this, PreferencesActivity.class);
-		                startActivity(i);
-						break;
-    	}
-    };
-    @Override
-    public void onResume() {
-        super.onResume();
-        SharedPreferences prefs = 
-            PreferenceManager.getDefaultSharedPreferences(this);       
-    }
-   
+	public void onResume() {
+		super.onResume();
+		// prefs =
+		// PreferenceManager.getDefaultSharedPreferences(this);
 
-   
-    public void showOnlySelected(ListView lv){
-    	parameter="isselected='+'";
-    	mCursor = managedQuery(
-                Provider.CONTENT_URI, mContent, parameter, null, null);
-    	mAdapter = new SimpleCursorAdapter(this, 
-                R.layout.item, mCursor, 
-                new String[] {DbHelper.DAY, DbHelper.TIME_START, DbHelper.ADAPTER}, 
-                new int[] {R.id.day, R.id.timetile, R.id.tile}); 
-    	lv.setAdapter(mAdapter);
-    	
-    };
-    
-    public void selectByType(){
-    	
-    	
-    };
-    
-    public void selectByProgram(){
-    	
-    	
-    };
-    
-    public void selectByTrainer(){
-    	
-    	
-    }
-
-	
-	@Override
-    protected Dialog onCreateDialog(int id) {
-        switch (id) {
-        case IDD_DIALOG:
-            LayoutInflater inflater = getLayoutInflater();
-            View layout = inflater.inflate(
-                R.layout.abouttile, (ViewGroup)findViewById(R.id.layout));
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setView(layout);
-                                   
-            return builder.create();
-        default:
-        return null;
-        }
-    }
-	
-	public void createNotif(String notif){
-		
-		Toast.makeText(getApplicationContext(), "Don't work yet!", Toast.LENGTH_SHORT).show();
-		
 	}
-	public String getTime(){
-		StringBuilder time;
-		final Calendar c = Calendar.getInstance();
-		int mYear = c.get(Calendar.YEAR);
-		int mMonth = c.get(Calendar.MONTH);
-		int mDay = c.get(Calendar.DAY_OF_MONTH);
-        int mHour = c.get(Calendar.HOUR_OF_DAY);
-        int mMinute = c.get(Calendar.MINUTE);
-        int mSecond = c.get(Calendar.SECOND);
-		time = new StringBuilder()
-        	.append(mYear)
-        	.append("/")
-        	.append(mMonth)
-        	.append("/")
-        	.append(mDay)
-        	.append(" ")
-        	.append(mHour)
-        	.append(":")
-        	.append(mMinute)
-        	.append(":")
-        	.append(mSecond);
-		return time.toString();
+
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.main);
+
+		showOnlySelected = false;
+		// new DownloadDataTask(getApplicationContext(),
+		// getCitiesUrl).execute();
+		// new
+		// DownloadDataTask(getApplicationContext(),getSheduleUrl).execute();
+		parameter = null;
+		// selected = (Button)findViewById(R.id.button1);
+		// types_training = (Button)findViewById(R.id.button2);
+		// types_program = (Button)findViewById(R.id.button3);
+		// trainers = (Button)findViewById(R.id.button4);
+		// prefs = (ImageButton)findViewById(R.id.imageButton1);
+		// SharedPreferences settings =
+		// PreferenceManager.getDefaultSharedPreferences(this);
+		// settings.getString("Type", defValue);
+		mCursor = managedQuery(Provider.CONTENT_URI, mContent, parameter, null,
+				null);
+
+		mAdapter = new SportAdapter(getApplicationContext(), R.layout.item,
+				mCursor, new String[] { DbHelper._ID, DbHelper.DAY,
+						DbHelper.TIME_START, DbHelper.ADAPTER }, new int[] {
+						R.id.id, R.id.day, R.id.timetile, R.id.tile });
+		lv = (ListView) findViewById(R.id.lv);
+
+		lv.setAdapter(mAdapter);
+
+		lv.setOnItemClickListener(new OnItemClickListener() {
+
+			public void onItemClick(AdapterView<?> arg0, View arg1,
+					int position, long arg3) {
+
+				showDialog(IDD_DIALOG);
+
+			}
+		});
+
+	}
+
+	public void clickHandler(View view) {
+		switch (view.getId()) {
+		case R.id.button1:
+			showOnlySelected = !showOnlySelected;
+			if (showOnlySelected) {
+				showOnlySelected(lv);
+				((Button) view).setText(R.string.menu_all);
+			} else {
+				showAll(lv);
+				((Button) view).setText(R.string.menu_selected);
+			}
+			;
+
+			break;
+		case R.id.button2:
+			Toast.makeText(getApplicationContext(), "Don't work yet!",
+					Toast.LENGTH_SHORT).show();
+			break;
+		case R.id.button3:
+			Toast.makeText(getApplicationContext(), "Don't work yet!",
+					Toast.LENGTH_SHORT).show();
+			break;
+		case R.id.button4:
+			Toast.makeText(getApplicationContext(), "Don't work yet!",
+					Toast.LENGTH_SHORT).show();
+			break;
+		case R.id.imageButton1:
+			Intent i = new Intent();
+			i.setClass(this, PreferencesActivity.class);
+			startActivity(i);
+			break;
+		}
 	};
-	public void sync(){
-		String time;
-		new DownloadDataTask(getApplicationContext(),getSheduleUrl).execute();
-		time=getTime();
-		
+
+	public void showAll(ListView lv) {
+		parameter = null;
+		mCursor = managedQuery(Provider.CONTENT_URI, mContent, parameter, null,
+				null);
+
+		mAdapter = new SportAdapter(getApplicationContext(), R.layout.item,
+				mCursor, new String[] { DbHelper._ID, DbHelper.DAY,
+						DbHelper.TIME_START, DbHelper.ADAPTER }, new int[] {
+						R.id.id, R.id.day, R.id.timetile, R.id.tile });
+
+		lv.setAdapter(mAdapter);
 	};
+
+	public void showOnlySelected(ListView lv) {
+		parameter = "isselected='+'";
+		mCursor = managedQuery(Provider.CONTENT_URI, mContent, parameter, null,
+				null);
+		mAdapter = new SportAdapter(getApplicationContext(), R.layout.item,
+				mCursor, new String[] { DbHelper._ID, DbHelper.DAY,
+						DbHelper.TIME_START, DbHelper.ADAPTER }, new int[] {
+						R.id.id, R.id.day, R.id.timetile, R.id.tile });
+		lv.setAdapter(mAdapter);
+
+	};
+
+	public void selectByType(String type) {
+		parameter = "type='" + type + "'";
+		mCursor = managedQuery(Provider.CONTENT_URI, mContent, parameter, null,
+				null);
+		mAdapter = new SportAdapter(getApplicationContext(), R.layout.item,
+				mCursor, new String[] { DbHelper._ID, DbHelper.DAY,
+						DbHelper.TIME_START, DbHelper.ADAPTER }, new int[] {
+						R.id.id, R.id.day, R.id.timetile, R.id.tile });
+		lv.setAdapter(mAdapter);
+
+	};
+
+	public void selectByProgram(String program) {
+		parameter = "program='" + program + "'";
+		mCursor = managedQuery(Provider.CONTENT_URI, mContent, parameter, null,
+				null);
+		mAdapter = new SportAdapter(getApplicationContext(), R.layout.item,
+				mCursor, new String[] { DbHelper._ID, DbHelper.DAY,
+						DbHelper.TIME_START, DbHelper.ADAPTER }, new int[] {
+						R.id.id, R.id.day, R.id.timetile, R.id.tile });
+		lv.setAdapter(mAdapter);
+
+	};
+
+	public void selectByTrainer(String trainer) {
+		parameter = "trainer='" + trainer + "'";
+		mCursor = managedQuery(Provider.CONTENT_URI, mContent, parameter, null,
+				null);
+		mAdapter = new SportAdapter(getApplicationContext(), R.layout.item,
+				mCursor, new String[] { DbHelper._ID, DbHelper.DAY,
+						DbHelper.TIME_START, DbHelper.ADAPTER }, new int[] {
+						R.id.id, R.id.day, R.id.timetile, R.id.tile });
+		lv.setAdapter(mAdapter);
+
+	}
+
+	@Override
+	protected Dialog onCreateDialog(int id) {
+		switch (id) {
+		case IDD_DIALOG:
+			LayoutInflater inflater = getLayoutInflater();
+			View layout = inflater.inflate(R.layout.abouttile,
+					(ViewGroup) findViewById(R.id.layout));
+			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			builder.setView(layout);
+
+			return builder.create();
+		default:
+			return null;
+		}
+	}
+
+	public void createNotif(String notif) {
+
+		Toast.makeText(getApplicationContext(), "Don't work yet!",
+				Toast.LENGTH_SHORT).show();
+
+	}
+
 }

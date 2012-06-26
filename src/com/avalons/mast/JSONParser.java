@@ -13,6 +13,7 @@ import android.util.Log;
 public class JSONParser {
 	public static final String TAG = "SportWidget->JSONParser"; 		
 	Context mContext;
+	String[] dayNames;
 	
 	int city_id;
 	String city_name="Новгород";
@@ -33,6 +34,8 @@ public class JSONParser {
 	//Constructor
 	public JSONParser(Context context,String res){
 		mContext=context;
+		dayNames = mContext.getResources().getStringArray(R.array.days);
+		
 		if ((res.contains("0")|
 			   res.contains("1")|
 			   res.contains("2")|
@@ -126,19 +129,22 @@ public class JSONParser {
         	
         	values.put(DbHelper.CITY, ""+city_name);
         	values.put(DbHelper.CLUB, ""+club_name);
-        	values.put(DbHelper.ROOM, "");
-        	values.put(DbHelper.TYPE_TRAINING, ""+titles.get(i).toString());
+        	values.put(DbHelper.ROOM, places.get(i).toString());
+        	values.put(DbHelper.TYPE_TRAINING, titles.get(i).toString());
         	values.put(DbHelper.TYPE_PROGRAM, "");
         	values.put(DbHelper.TRAINING, "");
-        	values.put(DbHelper.DAY, ""+days.get(i).toString());
-        	values.put(DbHelper.TIME_START, ""+times.get(i).toString());
-        	values.put(DbHelper.DURATION, ""+lengths.get(i).toString());
-        	values.put(DbHelper.TRAINER, ""+trainers.get(i).toString());
-        	values.put(DbHelper.PLACE, ""+places.get(i).toString());
+        	values.put(DbHelper.DAY, dayNames[Integer.parseInt(days.get(i).toString())]);
+        	values.put(DbHelper.TIME_START, times.get(i).toString());
+        	values.put(DbHelper.DURATION, lengths.get(i).toString());
+        	values.put(DbHelper.TRAINER, trainers.get(i).toString());
+        	values.put(DbHelper.PLACE, places.get(i).toString());
         	values.put(DbHelper.NOTES, "");
-        	values.put(DbHelper.DESCRIPTION, ""+abouts.get(i).toString());
+        	values.put(DbHelper.DESCRIPTION, abouts.get(i).toString());
         	values.put(DbHelper.ISSELECTED, "-");
-        	values.put(DbHelper.ADAPTER, "");
+        	values.put(DbHelper.ADAPTER,    titles.get(i).toString()+"("+
+        									lengths.get(i).toString()+"), "+
+        									trainers.get(i).toString()+", "+
+        									places.get(i).toString()+"");
         	
         	context.getContentResolver().insert(Provider.CONTENT_URI, values);
         	Log.i(TAG, "Inserted!"+i);
