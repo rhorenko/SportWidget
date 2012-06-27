@@ -132,7 +132,7 @@ public class JSONParser {
         	values.put(DbHelper.ROOM, places.get(i).toString());
         	values.put(DbHelper.TYPE_TRAINING, titles.get(i).toString());
         	values.put(DbHelper.TYPE_PROGRAM, "");
-        	values.put(DbHelper.TRAINING, "");
+        	values.put(DbHelper.TRAINING, titles.get(i).toString());
         	values.put(DbHelper.DAY, dayNames[Integer.parseInt(days.get(i).toString())]);
         	values.put(DbHelper.TIME_START, times.get(i).toString());
         	values.put(DbHelper.DURATION, lengths.get(i).toString());

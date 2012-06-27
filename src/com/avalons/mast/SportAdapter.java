@@ -30,7 +30,7 @@ public class SportAdapter extends SimpleCursorAdapter{
   @Override
   public View getView(int position, View converView, ViewGroup parent) {
    View List;
-   Log.i(TAG, "Position="+position);
+   //Log.i(TAG, "Position="+position);
    mCursor.moveToPosition(position);
    if(converView==null){
 	   	LayoutInflater inflater = (LayoutInflater)mListContext.getSystemService
@@ -46,7 +46,9 @@ public class SportAdapter extends SimpleCursorAdapter{
    bindView(List, mListContext, mCursor);
     
     CheckBox cb=(CheckBox)List.findViewById(R.id.cb);
-    	
+    if(mCursor.getString(15)=="+"){
+    	cb.setChecked(true);
+    };	
     cb.setOnClickListener(new OnClickListener() {
    
 		@Override

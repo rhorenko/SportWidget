@@ -24,7 +24,7 @@
             android:summary="@string/pr_summary_notif_time"
             android:title="@string/pr_title_notif_time" />
         <EditTextPreference
-            android:defaultValue="Москва"
+            android:defaultValue="Нижний Новгород"
             android:dialogTitle="@string/dlg_city"
             android:key="@string/pr_city"
             android:summary=""

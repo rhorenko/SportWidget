@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="horizontal" 
+    android:id="@+id/rl"
+    >
+	<TextView
+        android:id="@+id/idoneitem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        
+        android:textSize="14sp" 
+        android:visibility="gone"/>
+    
+
+    <CheckBox
+        android:id="@+id/cboneitem"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_alignParentRight="true"
+        android:textSize="12sp" 
+        android:focusable="false"
+		android:focusableInTouchMode="false" />
+        
+       
+ 
+    <TextView
+        android:id="@+id/oneitem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@id/cb"
+        android:layout_toRightOf="@id/timetile"
+        android:paddingLeft="5dp"
+        
+        android:textSize="14sp" />
+
+</RelativeLayout>

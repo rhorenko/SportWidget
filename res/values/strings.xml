@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">SportWidget</string>
+    <string name="app_name">AASportWidget</string>
     <string name="tv1">Пн. 20:00 BODYPUMP(55), Алексей З., Большой зал</string>
     <string name="tv2">Пн. 20:00 BODYPUMP(55), Алексей З., Большой зал</string>
     <string name="tv3">Пн. 20:00 BODYPUMP(55), Алексей З., Большой зал</string>

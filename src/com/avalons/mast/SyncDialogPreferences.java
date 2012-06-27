@@ -8,12 +8,13 @@ import android.preference.EditTextPreference;
 import android.preference.PreferenceManager;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.ViewGroup.LayoutParams;
 
 public class SyncDialogPreferences  extends EditTextPreference {
 	public static final String TAG = "SportWidget->SyncDialogPreferences";
 	public static final String getSheduleUrl = "http://test.epigrammi.net/api?act=getshedule&club_id=4";
 	Context mContext;
-    public SyncDialogPreferences(Context context, AttributeSet attrs) {
+    public SyncDialogPreferences(Context context, AttributeSet attrs) {    	
         super(context, attrs);
         Log.i(TAG, "From prefs");
         mContext=context;
@@ -22,11 +23,16 @@ public class SyncDialogPreferences  extends EditTextPreference {
     @Override
     protected void onDialogClosed(boolean positiveResult) {
         super.onDialogClosed(positiveResult);
+        if(positiveResult){
         sync(mContext);    //synhronization with server   
+        };
     }
     public void sync(Context context){
 		String time;
+		
 		new DownloadDataTask(context,getSheduleUrl).execute();
+		
+		
 		time=getTime();
 		//prefs = 
 	            //PreferenceManager.getDefaultSharedPreferences(this);
@@ -36,6 +42,7 @@ public class SyncDialogPreferences  extends EditTextPreference {
         SharedPreferences.Editor prefEditor = sharedPref.edit(); // Get preference in editor mode
         prefEditor.putString(context.getString(R.string.pr_sync), time); // set your default value here (could be empty as well)
         prefEditor.commit(); // finally save changes
+        
 	};
 	
 	public String getTime(){
