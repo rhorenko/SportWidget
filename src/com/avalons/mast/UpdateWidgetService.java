@@ -16,11 +16,12 @@ public class UpdateWidgetService extends Service {
 	public static final String TAG = "SportWidget->UdateWidgetService"; 
 	Cursor mCursor;
 	static final String[] mContent = new String[] { DbHelper._ID, DbHelper.ADAPTER };
+	public AppWidgetManager appWidgetManager;
 	@Override
 	public void onStart(Intent intent, int startId) {
 		Log.i(TAG, "Called");
 		
-		AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(this
+		appWidgetManager = AppWidgetManager.getInstance(this
 				.getApplicationContext());
 
 		int[] allWidgetIds = intent

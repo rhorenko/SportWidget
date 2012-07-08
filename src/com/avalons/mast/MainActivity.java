@@ -9,6 +9,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.appwidget.AppWidgetManager;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -30,6 +31,7 @@ public class MainActivity extends Activity {
 	ProgressDialog progress;
 	public static final String TAG = "SportWidget->MainActivity";
 	public static final String getCitiesUrl = "http://test.epigrammi.net/api?act=getcities";
+	public static String FORCE_WIDGET_UPDATE = "com.paad.chapter9.FORCE_WIDGET_UPDATE";
 	int mPosition;
 	private final int IDD_DIALOG = 0;
 	// private Button selected;
@@ -85,7 +87,7 @@ public class MainActivity extends Activity {
 		typesProgram= new Vector();
 		typesTraining= new Vector();
 		
-		
+		//getApplicationContext().sendBroadcast(new Intent(FORCE_WIDGET_UPDATE));
 		
 		mAdapter = new SportAdapter(getApplicationContext(), R.layout.item,
 				mCursor, new String[] { DbHelper._ID, DbHelper.DAY,
@@ -105,6 +107,7 @@ public class MainActivity extends Activity {
 
 			}
 		});
+		
 
 	}
 

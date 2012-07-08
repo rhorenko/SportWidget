@@ -23,7 +23,6 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
-import android.os.IBinder;
 import android.util.Log;
 import android.widget.RemoteViews;
 
@@ -31,7 +30,7 @@ import android.widget.RemoteViews;
  * Define a simple widget that shows the sport schedule. 
  */
 public class Widget extends AppWidgetProvider {
-	
+	public static String FORCE_WIDGET_UPDATE = "com.avalons.mast.FORCE_WIDGET_UPDATE";
 	public static final String TAG = "SportWidget->Widget";
 	
 		Cursor mCursor;
@@ -61,30 +60,38 @@ public class Widget extends AppWidgetProvider {
     				Log.i(TAG, tv2);
     				Log.i(TAG, tv3);
     				Log.i(TAG, tv4);
-    				// Set the text
     				
+    				// Set the text    				
+    				remoteViews.setTextViewText(R.id.tv1, "tv1");
+    				remoteViews.setTextViewText(R.id.tv2, "tv2");
+    				remoteViews.setTextViewText(R.id.tv3, "tv3");
+    				remoteViews.setTextViewText(R.id.tv4, "tv4");
     				
-    				remoteViews.setTextViewText(R.id.tv1, tv1);
-    				remoteViews.setTextViewText(R.id.tv2, tv2);
-    				remoteViews.setTextViewText(R.id.tv3, tv3);
-    				remoteViews.setTextViewText(R.id.tv4, tv4);
     				
     				// Register an onClickListener
-    				Intent intent = new Intent(context, MainActivity.class);
-
+    				//Intent intent = new Intent(context, MainActivity.class);
+    				Intent intent = new Intent("com.avalons.mast.ACTION_WIDGET_CLICK");
     				intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
     				intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, appWidgetIds);
 
     				PendingIntent pendingIntent = PendingIntent.getBroadcast(context,
-    						0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-    				remoteViews.setOnClickPendingIntent(R.id.tv1, pendingIntent);
+    						0, intent, 0);
+    				remoteViews.setOnClickPendingIntent(R.id.widget, pendingIntent);
     				appWidgetManager.updateAppWidget(widgetId, remoteViews);
+    				
+    				Intent intent1 = new Intent(context, UpdateWidgetService.class);
+    				context.startService(intent1);  
     			}
     }
     @Override
     public void onReceive(Context context, Intent intent) {
         super.onReceive(context, intent);
-        Log.d("ARH","CLICKK");
+        Log.d(TAG,"CLICKK");
+        if (FORCE_WIDGET_UPDATE.equals(intent.getAction())) {
+			// TODO Обновить пользовательский интерфейс виджета.
+        	Log.d("ARH","CLICKK--------------->");
+			}
+		
     }
         
 }
