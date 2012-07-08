@@ -16,22 +16,46 @@
 
 package com.avalons.mast;
 
-import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
-import android.util.Log;
-import android.widget.RemoteViews;
 
 /**
  * Define a simple widget that shows the sport schedule. 
  */
 public class Widget extends AppWidgetProvider {
-	public static String FORCE_WIDGET_UPDATE = "com.avalons.mast.FORCE_WIDGET_UPDATE";
 	public static final String TAG = "SportWidget->Widget";
+	
+	//for service management
+		public static final String SERVICE_PARAM = "parameters";
+		public static final String SERVICE_ADD = "add";
+		public static final String SERVICE_DEL = "del";
+		
+		//it is called when widget is updating
+		@Override
+		public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
+			// add widget
+			Intent intent = new Intent(context, UpdateWidgetService.class);
+	        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, appWidgetIds); 
+	        intent.putExtra(SERVICE_PARAM, SERVICE_ADD); 
+			context.startService(intent);  
+		}
+		//it is called when widget is deleting
+	    @Override
+	    public void onDeleted(Context context, int[] appWidgetIds) {
+	    	// delete widget
+			Intent intent = new Intent(context.getApplicationContext(), UpdateWidgetService.class);
+			intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, appWidgetIds); 
+	        intent.putExtra(SERVICE_PARAM, SERVICE_DEL); 
+			context.startService(intent);  		   	
+	    }	
+	    
+	 
+	
+	/**
+	public static String FORCE_WIDGET_UPDATE = "com.avalons.mast.FORCE_WIDGET_UPDATE";
+	
 	
 		Cursor mCursor;
 		static final String[] mContent = new String[] { DbHelper._ID, DbHelper.ADAPTER };
@@ -88,10 +112,10 @@ public class Widget extends AppWidgetProvider {
         super.onReceive(context, intent);
         Log.d(TAG,"CLICKK");
         if (FORCE_WIDGET_UPDATE.equals(intent.getAction())) {
-			// TODO Обновить пользовательский интерфейс виджета.
+			
         	Log.d("ARH","CLICKK--------------->");
 			}
 		
     }
-        
+    */    
 }
